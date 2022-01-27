@@ -6,7 +6,7 @@
 /*   By: ykimirti <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:10:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/01/27 13:33:11 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/01/27 14:00:45 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ char	*ft_sprintf(const char *key, ...)
 	va_list	ap;
 	int		i;
 	char	*str;
-	char	*tmp;
 
 	va_start(ap, key);
 	i = 0;
