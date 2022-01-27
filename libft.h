@@ -6,7 +6,7 @@
 /*   By: ykimirti <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 14:58:39 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/01/26 15:19:08 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/01/27 12:34:35 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *));
 
 // EXTRA
 char	*get_next_line(int fd);
-int	ft_printf(const char *key, ...);
+int		ft_printf(const char *key, ...);
+char	*ft_sprintf(const char *key, ...);
+char	*ft_strjoinfre(char *s1, char *s2);
 
 #endif
