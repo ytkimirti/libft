@@ -4,7 +4,6 @@ BIN_DIR ?= ./
 
 SRC_DIR ?= ./
 OBJ_DIR ?= obj
-BONUS_DIR ?= ./
 
 SRC=ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	 ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c  ft_memchr.c ft_memcmp.c \
@@ -50,14 +49,12 @@ endif
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 CC = gcc -MD
-AR = ar rcs
 
 NAME = $(BIN_DIR)/$(BIN)
 
 PRINTF = LC_NUMERIC="en_US.UTF-8" printf
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-OBJ_BONUS = $(addprefix $(OBJ_DIR)/, $(BONUS:.c=.o))
 
 # Progress vars
 SRC_COUNT_TOT := $(shell expr $(shell echo -n $(SRC) | wc -w) - $(shell ls -l $(OBJ_DIR) 2>&1 | grep ".o" | wc -l) + 1)
@@ -68,9 +65,10 @@ SRC_COUNT := 0
 SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
 all: $(NAME)
+	echo "Src is now $(SRC)"
 
 $(NAME): create_dirs $(OBJ)
-	@$(AR) $@ $(OBJ)
+	@$(CC) $(CFLAGS) $(CDEBUG) $(OBJ) $(LIBFT) -o $@
 	@$(PRINTF) "\r%100s\r$(GRN)$(BIN) is up to date!$(RST)\n"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
@@ -78,7 +76,7 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLU)$<$(RST)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
 
-bonus: OBJ+=$(OBJ_BONUS)
+bonus: SRC+=$(BONUS)
 
 bonus: all
 
