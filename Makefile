@@ -1,10 +1,5 @@
-# Project vars
 BIN ?= libft.a
-BIN_DIR ?= ./
-
-SRC_DIR ?= ./
 OBJ_DIR ?= obj
-BONUS_DIR ?= ./
 
 SRC=ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	 ft_isascii.c ft_isdigit.c ft_isprint.c ft_itoa.c  ft_memchr.c ft_memcmp.c \
@@ -19,9 +14,6 @@ BONUS=ft_lstadd_back.c \
 	  ft_lstmap.c ft_lstnew.c ft_lstsize.c \
 	  printf.c utils.c get_next_line_bonus.c \
 	  sprintf.c ft_strjoinfre.c
-
-LIBFT ?= 
-LIBFT_REPO ?= https://github.com/ytkimirti/libft.git
 
 # Color Aliases
 RST = \033[0;39m
@@ -39,20 +31,13 @@ UNAME = $(shell uname -s)
 
 CDEBUG ?= -g3 #-fsanitize=address
 
-# Properties for MacOS
-
-ifeq ($(UNAME), Linux)
-	# Properties for Linux
-	LEAKS =  valgrind --leak-check=full --show-leak-kinds=all -s -q 
-endif
-
 # Make variables
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 CC = gcc -MD
 AR = ar rcs
 
-NAME = $(BIN_DIR)/$(BIN)
+NAME = $(BIN)
 
 PRINTF = LC_NUMERIC="en_US.UTF-8" printf
 
@@ -73,45 +58,24 @@ $(NAME): create_dirs $(OBJ)
 	@$(AR) $@ $(OBJ)
 	@$(PRINTF) "\r%100s\r$(GRN)$(BIN) is up to date!$(RST)\n"
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o: %.c
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLU)$<$(RST)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
-
-bonus: OBJ+=$(OBJ_BONUS)
-
-bonus: all
-
-download_packages:
-	@if [ ! -d "libft" ]; then \
-		git clone $(LIBFT_REPO); \
-	fi
-	@make all -C libft/
-
-delete_packages:
-	rm -rf libft
-
-run: all
-	./$(NAME) $(ARGS)
-
 create_dirs:
 	@mkdir -p $(OBJ_DIR)
-	@mkdir -p $(BIN_DIR)
 
 clean:
-	@$(PRINTF) "$(CYN)Cleaning up object files in $(BIN)...$(RST)\n"
-	@$(RM) -r $(OBJ_DIR)
+	@$(PRINTF) "$(CYN)Cleaning up object files in $(OBJ_DIR)...$(RST)\n"
+	@$(RM) -rf $(OBJ_DIR)
 
 fclean: clean
-	@$(RM) -r $(BIN_DIR)
-	@$(PRINTF) "$(CYN)Removed $(NAME)$(RST)\n"
+	@$(RM) -rf $(BIN)
+	@$(PRINTF) "$(CYN)Cleaning up $(NAME)$(RST)\n"
 
 norminette:
-	@if [ -d "libft" ]; then \
-		make norminette -C libft/; \
-	fi
-	@$(PRINTF) "$(CYN)\nChecking norm for $(BIN)...$(RST)\n"
-	@norminette -R CheckForbiddenSourceHeader $(SRC_DIR)
+	@$(PRINTF) "$(CYN)\nChecking norm...$(RST)\n"
+	@norminette -R CheckForbiddenSourceHeader
 
 re: fclean
 	@make all
