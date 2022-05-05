@@ -8,16 +8,15 @@ SRC=ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c \
 	 ft_strchr.c ft_strdup.c ft_striteri.c ft_strjoin.c ft_strlcat.c \
 	 ft_strlcpy.c ft_strlen.c ft_strmapi.c ft_strncmp.c ft_strnstr.c ft_strtrim.c \
 	 ft_strrchr.c ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
-
-BONUS=ft_lstadd_back.c \
-	  ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
-	  ft_lstmap.c ft_lstnew.c ft_lstsize.c \
-	  printf.c utils.c get_next_line_bonus.c \
-	  sprintf.c ft_strjoinfre.c
+	 ft_lstadd_back.c \
+	 ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
+	 ft_lstmap.c ft_lstnew.c ft_lstsize.c \
+	 printf.c utils.c get_next_line_bonus.c \
+	 sprintf.c ft_strjoinfre.c
 
 # Color Aliases
-RST = \033[0;39m
 CLRLINE = \033[A\33[2KT\r
+RST = \033[0;39m
 GRY = \033[0;90m
 RED = \033[0;91m
 GRN = \033[0;92m
@@ -43,7 +42,6 @@ NAME = $(BIN)
 PRINTF = LC_NUMERIC="en_US.UTF-8" printf
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
-OBJ_BONUS = $(addprefix $(OBJ_DIR)/, $(BONUS:.c=.o))
 
 # Progress vars
 SRC_COUNT_TOT := $(shell expr $(shell echo -n $(SRC) | wc -w) - $(shell ls -l $(OBJ_DIR) 2>&1 | grep ".o" | wc -l) + 1)
@@ -75,7 +73,7 @@ fclean: clean
 	@$(PRINTF) "$(CYN)Cleaning up $(NAME)$(RST)\n"
 
 norminette:
-	@$(PRINTF) "$(CYN)\nChecking norm...$(RST)\n"
+	@$(PRINTF) "$(CYN)Checking norm...$(RST)\n"
 	@norminette -R CheckForbiddenSourceHeader
 
 re: fclean
@@ -88,4 +86,4 @@ git:
 
 -include $(OBJ_DIR)/*.d
 
-.PHONY: all clean fclean bonus download_packages norminette create_dirs git re
+.PHONY: all clean fclean bonus norminette create_dirs git re
