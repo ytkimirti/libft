@@ -17,6 +17,7 @@ BONUS=ft_lstadd_back.c \
 
 # Color Aliases
 RST = \033[0;39m
+CLRLINE = \033[A\33[2KT\r
 GRY = \033[0;90m
 RED = \033[0;91m
 GRN = \033[0;92m
@@ -49,18 +50,18 @@ SRC_COUNT_TOT := $(shell expr $(shell echo -n $(SRC) | wc -w) - $(shell ls -l $(
 ifeq ($(shell test $(SRC_COUNT_TOT) -le 0; echo $$?),0)
 	SRC_COUNT_TOT := $(shell echo -n $(SRC) | wc -w)
 endif
-SRC_COUNT := 0
+SRC_COUNT := 1
 SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
 all: $(NAME)
 
 $(NAME): create_dirs $(OBJ)
 	@$(AR) $@ $(OBJ)
-	@$(PRINTF) "\r%100s\r$(GRN)$(BIN) is up to date!$(RST)\n"
+	@$(PRINTF) "$(GRN)$(BIN) is up to date!$(RST)\n"
 
 $(OBJ_DIR)/%.o: %.c
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
-	@$(PRINTF) "\r%100s\r[ %d/%d (%d%%) ] Compiling $(BLU)$<$(RST)..." "" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
+	@$(PRINTF) "$(CLRLINE)[ %d/%d (%d%%) ] Compiling $(BLU)$<$(RST)...\n" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
 create_dirs:
 	@mkdir -p $(OBJ_DIR)
