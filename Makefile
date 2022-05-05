@@ -54,7 +54,7 @@ SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 all: $(NAME)
 
 $(NAME): create_dirs $(OBJ)
-	@$(AR) $@ $(OBJ)
+	$(AR) $@ $(OBJ)
 	@$(PRINTF) "$(GRN)$(BIN) is up to date!$(RST)\n"
 
 $(OBJ_DIR)/%.o: %.c
