@@ -57,7 +57,10 @@ $(NAME): create_dirs $(OBJ)
 	$(AR) $@ $(OBJ)
 	@$(PRINTF) "$(GRN)$(BIN) is up to date!$(RST)\n"
 
+HAS_COMPILED=false
+
 $(OBJ_DIR)/%.o: %.c
+	@if [[ $(HAS_COMPILED) ]]
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "$(CLRLINE)[ %d/%d (%d%%) ] Compiling $(BLU)$<$(RST)...\n" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
