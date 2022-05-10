@@ -53,19 +53,26 @@ SRC_PCT = $(shell expr 100 \* $(SRC_COUNT) / $(SRC_COUNT_TOT))
 
 all: $(NAME)
 
-$(NAME): create_dirs $(OBJ)
-	$(AR) $@ $(OBJ)
-	@$(PRINTF) "$(GRN)$(BIN) is up to date!$(RST)\n"
+$(NAME): $(OBJ)
+	@$(AR) $@ $(OBJ)
+	@$(PRINTF) "$(GRN)Complication finished $(BIN)!$(RST)\n"
 
-HAS_COMPILED=false
+# Create the directory before compiling object files
+$(OBJ): | $(OBJ_DIR)
+
+$(OBJ_DIR):
+	@mkdir -p $(OBJ_DIR)
+
+HAS_COMPILED="false"
 
 $(OBJ_DIR)/%.o: %.c
-	@if [[ $(HAS_COMPILED) ]]
+	@if [ "$(HAS_COMPILED)" == "false" ]; then \
+		$(PRINTF) "\n"; \
+	fi
+	@$(eval HAS_COMPILED = "true")
 	@$(eval SRC_COUNT = $(shell expr $(SRC_COUNT) + 1))
 	@$(PRINTF) "$(CLRLINE)[ %d/%d (%d%%) ] Compiling $(BLU)$<$(RST)...\n" $(SRC_COUNT) $(SRC_COUNT_TOT) $(SRC_PCT)
 	@$(CC) $(CFLAGS) $(CDEBUG) -c $< -o $@
-create_dirs:
-	@mkdir -p $(OBJ_DIR)
 
 clean:
 	@$(PRINTF) "$(CYN)Cleaning up object files in $(OBJ_DIR)...$(RST)\n"
@@ -86,6 +93,13 @@ git:
 	git add .
 	git commit
 	git push
+
+# Thanks to abdulselam hocam
+debug: CFLAGS += -g
+debug: re
+
+address: CFLAGS += -fsanitize=address -g
+address: re
 
 -include $(OBJ_DIR)/*.d
 
