@@ -16,29 +16,29 @@
 #include "libft.h"
 #include "printf.h"
 
-int	print_arg(char c, va_list ap)
+int	print_arg(char c, va_list *ap)
 {
 	int	mychar;
 
 	if (c == 'c')
 	{
-		mychar = va_arg(ap, int);
+		mychar = va_arg(*ap, int);
 		return (write(1, &mychar, 1));
 	}
 	if (c == 's')
-		return (ft_putstr(va_arg(ap, char *)));
+		return (ft_putstr(va_arg(*ap, char *)));
 	if (c == 'p')
-		return (print_pointer(va_arg(ap, unsigned long int)));
+		return (print_pointer(va_arg(*ap, unsigned long int)));
 	if (c == 'd')
-		return (ft_putnbr(va_arg(ap, int), 1));
+		return (ft_putnbr(va_arg(*ap, int), 1));
 	if (c == 'i')
-		return (ft_putnbr(va_arg(ap, int), 1));
+		return (ft_putnbr(va_arg(*ap, int), 1));
 	if (c == 'u')
-		return (ft_putnbr_unsigned(va_arg(ap, unsigned int), 1));
+		return (ft_putnbr_unsigned(va_arg(*ap, unsigned int), 1));
 	if (c == 'x')
-		return (print_hexadec(va_arg(ap, unsigned int), "0123456789abcdef"));
+		return (print_hexadec(va_arg(*ap, unsigned int), "0123456789abcdef"));
 	if (c == 'X')
-		return (print_hexadec(va_arg(ap, unsigned int), "0123456789ABCDEF"));
+		return (print_hexadec(va_arg(*ap, unsigned int), "0123456789ABCDEF"));
 	if (c == '%')
 		return (ft_putstr("%"));
 	return (0);
@@ -58,7 +58,7 @@ int	ft_printf(const char *key, ...)
 		if (key[i] == '%')
 		{
 			if (key[i + 1] != 0)
-				len += print_arg(key[i + 1], ap);
+				len += print_arg(key[i + 1], &ap);
 			i++;
 		}
 		else
