@@ -32,5 +32,6 @@ int			*ivec_update(t_ivec *vec);
 void		ivec_append(t_ivec *vec, int element);
 t_ivec	*ivec_new(int buffer_size);
 void		ivec_del(t_ivec *vec);
+t_ivec	*ivec_dup(t_ivec *vec);
 
 #endif

@@ -67,6 +67,24 @@ void	ivec_del(t_ivec *vec)
 	free(vec);
 }
 
+t_ivec	*ivec_dup(t_ivec *vec)
+{
+	int			i;
+	t_ivec	*new_vec;
+
+	new_vec = (t_ivec *)malloc(sizeof(t_ivec));
+	new_vec->len = vec->len;
+	new_vec->capacity = vec->capacity;
+	new_vec->buffer_size = vec->buffer_size;
+	i = 0;
+	while (i < vec->len)
+	{
+		new_vec->arr[i] = vec->arr[i];
+		i++;
+	}
+	return (new_vec);
+}
+
 // int	main(void)
 // {
 // 	t_ivec *vec;
