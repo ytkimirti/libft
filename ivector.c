@@ -73,6 +73,7 @@ t_ivec	*ivec_dup(t_ivec *vec)
 	t_ivec	*new_vec;
 
 	new_vec = (t_ivec *)malloc(sizeof(t_ivec));
+	new_vec->arr = (int *)malloc(sizeof(int) * vec->capacity);
 	new_vec->len = vec->len;
 	new_vec->capacity = vec->capacity;
 	new_vec->buffer_size = vec->buffer_size;
