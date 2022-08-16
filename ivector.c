@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ivector.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 15:31:09 by 42istanbu         #+#    #+#             */
+/*   Updated: 2022/08/16 15:32:20 by 42istanbu        ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "vector.h"
 #include <stdlib.h>
 #include "libft.h"
 
-
-void ivec_append(t_ivec *vec, int element)
+void	ivec_append(t_ivec *vec, int element)
 {
 	vec->len++;
 	ivec_update(vec);
@@ -16,9 +26,9 @@ void ivec_append(t_ivec *vec, int element)
  * Reallocates new memory, moves all integers to it.
  * Frees the old integer array.
  * */
-int *ivec_update(t_ivec *vec)
+int	*ivec_update(t_ivec *vec)
 {
-	int	*new_arr;
+	int		*new_arr;
 	int		i;
 
 	if (vec->len > vec->capacity)
@@ -42,7 +52,7 @@ int *ivec_update(t_ivec *vec)
 /* Creates a new vector with a given buffer_size. If the vector's
  * length exceeds the capacity, memory is reallocated by
  * capacity + buffer_size*/
-t_ivec *ivec_new(int buffer_size)
+t_ivec	*ivec_new(int buffer_size)
 {
 	t_ivec	*vec;
 
@@ -69,7 +79,7 @@ void	ivec_del(t_ivec *vec)
 
 t_ivec	*ivec_dup(t_ivec *vec)
 {
-	int			i;
+	int		i;
 	t_ivec	*new_vec;
 
 	new_vec = (t_ivec *)malloc(sizeof(t_ivec));
@@ -85,46 +95,3 @@ t_ivec	*ivec_dup(t_ivec *vec)
 	}
 	return (new_vec);
 }
-
-// int	main(void)
-// {
-// 	t_ivec *vec;
-//
-// 	vec = ivec_new(2);
-// 	ivec_append(vec, (void *)ft_strdup("Ocak"));
-// 	ivec_append(vec, (void *)ft_strdup("Subat"));
-// 	ivec_append(vec, (void *)ft_strdup("Mart"));
-// 	ivec_append(vec, (void *)ft_strdup("Nisan"));
-// 	ivec_append(vec, (void *)ft_strdup("Mayis"));
-// 	ivec_append(vec, (void *)ft_strdup("Haziran"));
-//
-// 	for (int i = 0; i < vec->len; i++)
-// 	{
-// 		ft_printf("i: %d str: %s\n", i, (char *)vec->arr[i]);
-// 	}
-// }
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

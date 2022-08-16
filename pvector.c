@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pvector.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/08/16 15:32:32 by 42istanbu         #+#    #+#             */
+/*   Updated: 2022/08/16 15:32:59 by 42istanbu        ###   ########.tr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "vector.h"
 #include <stdlib.h>
 #include "libft.h"
 
-
-void pvec_append(t_pvec *vec, void *element)
+void	pvec_append(t_pvec *vec, void *element)
 {
 	vec->len++;
 	pvec_update(vec);
@@ -16,7 +26,7 @@ void pvec_append(t_pvec *vec, void *element)
  * Reallocates new memory, moves all pointers to it.
  * Frees the old pointer array.
  * */
-void **pvec_update(t_pvec *vec)
+void	**pvec_update(t_pvec *vec)
 {
 	void	**new_arr;
 	int		i;
@@ -42,7 +52,7 @@ void **pvec_update(t_pvec *vec)
 /* Creates a new vector with a given buffer_size. If the vector's
  * length exceeds the capacity, memory is reallocated by
  * capacity + buffer_size*/
-t_pvec *pvec_new(int buffer_size)
+t_pvec	*pvec_new(int buffer_size)
 {
 	t_pvec	*vec;
 
@@ -74,46 +84,3 @@ void	pvec_del(t_pvec *vec, void (*del)(void *))
 	free(vec->arr);
 	free(vec);
 }
-
-// int	main(void)
-// {
-// 	t_pvec *vec;
-//
-// 	vec = pvec_new(2);
-// 	pvec_append(vec, (void *)ft_strdup("Ocak"));
-// 	pvec_append(vec, (void *)ft_strdup("Subat"));
-// 	pvec_append(vec, (void *)ft_strdup("Mart"));
-// 	pvec_append(vec, (void *)ft_strdup("Nisan"));
-// 	pvec_append(vec, (void *)ft_strdup("Mayis"));
-// 	pvec_append(vec, (void *)ft_strdup("Haziran"));
-//
-// 	for (int i = 0; i < vec->len; i++)
-// 	{
-// 		ft_printf("i: %d str: %s\n", i, (char *)vec->arr[i]);
-// 	}
-// }
-//
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
