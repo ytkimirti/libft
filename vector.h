@@ -3,16 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   vector.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: 42istanbul <@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/16 15:33:13 by 42istanbu         #+#    #+#             */
-/*   Updated: 2022/08/16 15:34:41 by 42istanbu        ###   ########.tr       */
+/*   Created: 2022/08/27 08:58:22 by ykimirti          #+#    #+#             */
+/*   Updated: 2022/08/27 08:58:32 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef VECTOR_H
 
 # define VECTOR_H
+
+# include <stdbool.h>
 
 // Pointer vector
 
@@ -45,5 +48,6 @@ void	ivec_append(t_ivec *vec, int element);
 t_ivec	*ivec_new(int buffer_size);
 void	ivec_del(t_ivec *vec);
 t_ivec	*ivec_dup(t_ivec *vec);
+void	ivec_print(t_ivec *vec, bool extra_info);
 
 #endif
