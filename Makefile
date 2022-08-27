@@ -14,6 +14,7 @@ SRC=ft_atoi.c ft_bzero.c ft_calloc.c ft_isspace.c ft_isalnum.c ft_isalpha.c \
 	 printf.c utils.c get_next_line_bonus.c \
 	 pvector.c \
 	 ivector.c ivector_util.c \
+	 cvector.c cvector_util.c \
 	 sprintf.c ft_strjoinfre.c
 
 # Color Aliases
