@@ -6,7 +6,7 @@
 /*   By: ykimirti <42istanbul.com.tr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 15:10:08 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/01/27 14:00:45 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/10/28 10:26:32 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 #include <stdlib.h>
 #include "libft.h"
 
-char	*str_arg(char c, va_list ap)
+char	*str_arg(char c, va_list *ap)
 {
 	if (c == 's')
-		return (ft_strdup(va_arg(ap, char *)));
+		return (ft_strdup(va_arg(*ap, char *)));
 	if (c == 'd')
-		return (ft_itoa(va_arg(ap, int)));
+		return (ft_itoa(va_arg(*ap, int)));
 	if (c == 'i')
-		return (ft_itoa(va_arg(ap, int)));
+		return (ft_itoa(va_arg(*ap, int)));
 	if (c == '%')
 		return (ft_strdup("%"));
 	return (ft_strdup(""));
@@ -63,7 +63,7 @@ char	*ft_sprintf(const char *key, ...)
 		if (key[i] == '%')
 		{
 			if (key[i + 1] != 0)
-				str = ft_strjoinfre(str, str_arg(key[i + 1], ap));
+				str = ft_strjoinfre(str, str_arg(key[i + 1], &ap));
 			i += 2;
 			continue ;
 		}
