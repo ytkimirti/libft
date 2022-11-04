@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 08:53:09 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/27 09:23:39 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/04 11:23:20 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	cvec_print(t_cvec *vec, bool extra_info)
  * is not appended to the vector if terminate is
  * false
  * */
-void	cvec_appendstr(t_cvec *vec, char *str, bool terminate)
+void	cvec_appendstr(t_cvec *vec, const char *str, bool terminate)
 {
 	while (*str != '\0')
 	{

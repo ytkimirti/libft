@@ -6,7 +6,7 @@
 /*   By: ykimirti <ykimirti@42istanbul.com.tr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/27 08:58:22 by ykimirti          #+#    #+#             */
-/*   Updated: 2022/08/27 09:24:54 by ykimirti         ###   ########.tr       */
+/*   Updated: 2022/11/04 11:23:19 by ykimirti         ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_cvec
 
 char	*cvec_update(t_cvec *vec);
 void	cvec_append(t_cvec *vec, char element);
-void	cvec_appendstr(t_cvec *vec, char *str, bool terminate);
+void	cvec_appendstr(t_cvec *vec, const char *str, bool terminate);
 t_cvec	*cvec_new(int buffer_size);
 void	cvec_del(t_cvec *vec);
 t_cvec	*cvec_dup(t_cvec *vec);
